@@ -1,0 +1,220 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"等线 Light";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@等线";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@等线 Light";}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	font-size:10.5pt;
+	font-family:DengXian;}
+h1
+	{mso-style-link:"标题 1 字符";
+	margin-top:17.0pt;
+	margin-right:0cm;
+	margin-bottom:16.5pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	line-height:240%;
+	page-break-after:avoid;
+	font-size:22.0pt;
+	font-family:DengXian;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"标题 字符";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	font-size:16.0pt;
+	font-family:"等线 Light";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:#0563C1;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin:0cm;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:21.0pt;
+	font-size:10.5pt;
+	font-family:DengXian;}
+span.1
+	{mso-style-name:"标题 1 字符";
+	mso-style-link:"标题 1";
+	font-weight:bold;}
+span.a
+	{mso-style-name:"标题 字符";
+	mso-style-link:标题;
+	font-family:"等线 Light";
+	font-weight:bold;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	layout-grid:15.6pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=ZH-CN link="#0563C1" vlink="#954F72" style='word-wrap:break-word;
+text-justify-trim:punctuation'>
+
+<div class=WordSection1 style='layout-grid:15.6pt'>
+
+<p class=MsoTitle>在<span lang=EN-US>Android</span>上使用各种优化插件</p>
+
+<p class=MsoNormal>本文需要一定的技术基础，如果嫌麻烦可以安装一个带<span lang=EN-US>Root+Xposed</span>的虚拟机</p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Apple Color Emoji"'>⚠</span><span
+lang=EN-US style='font-family:"Apple Color Emoji"'>️</span>警告：使用太极·阴等<span
+lang=EN-US>Virtual Xposed</span>软件修改了软件程序导致签名不一致的将会有封号警告！！！</p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Apple Color Emoji"'>⚠</span><span
+lang=EN-US style='font-family:"Apple Color Emoji"'>️</span>危险：使用虚拟机请将虚拟机模拟正常手机，不建议模拟<span
+lang=EN-US>iPhone</span>、<span lang=EN-US>iPad</span>等，更不建议模拟电脑（<span
+lang=EN-US>WSA</span>除外），不要频繁更换模拟型号！！！</p>
+
+<p class=MsoNormal>（别问我怎么知道的）</p>
+
+<h1>前提</h1>
+
+<p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>一台电脑</p>
+
+<p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>一部手机</p>
+
+<p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>一根能传输数据的数据线</p>
+
+<p class=MsoListParagraph style='margin-left:18.0pt;text-indent:-18.0pt'><span
+lang=EN-US>·<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>Android Debug Bridge</span>（<span lang=EN-US>adb</span>），安装<span
+lang=EN-US><a
+href="https://developer.android.google.cn/studio/releases/platform-tools"><span
+lang=EN-US><span lang=EN-US>见此</span></span></a></span>（谷歌中国），如果可以科学上网，也可去<span
+lang=EN-US><a
+href="https://developer.android.com/studio/releases/platform-tools"><span
+lang=EN-US><span lang=EN-US>官网</span></span></a></span></p>
+
+<h1>开始工作</h1>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>0.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>下述<span lang=EN-US>a</span>至<span lang=EN-US>c</span>内容可以略过步骤<span
+lang=EN-US>1-4</span></p>
+
+<p class=MsoListParagraph style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>如果手机的<span lang=EN-US>Android</span>版本≤<span lang=EN-US>9.0</span>，可以使用“<span
+lang=EN-US>root</span>手机，然后安装<span lang=EN-US>Xposed</span>”的方法</p>
+
+<p class=MsoListParagraph style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>使用<span lang=EN-US>WSA</span>，请见<span lang=EN-US>LSPosed</span>的在<span
+lang=EN-US>WSA(</span>在<span lang=EN-US>Windows</span>上原生运行<span lang=EN-US>Android</span>（不是各大模拟器）<span
+lang=EN-US>)</span>上使用<span lang=EN-US>Magisk</span>的<span lang=EN-US><a
+href="https://github.com/LSPosed/MagiskOnWSALocal"><span lang=EN-US><span
+lang=EN-US>仓库</span></span></a></span></p>
+
+<p class=MsoListParagraph style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US>c)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>使用系统级<span lang=EN-US>root</span>，如在手机设置内开启了<span lang=EN-US>root</span>开关，或安装了<span
+lang=EN-US>user-debug-key</span>的<span lang=EN-US>Android</span>，或<span
+lang=EN-US>GSI</span>（可能），可直接安装<span lang=EN-US>Magisk</span></p>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>打开命令提示符（<span lang=EN-US>Windows</span>）或者终端（<span lang=EN-US>GNU/Linux</span>，<span
+lang=EN-US>macOS</span>，<span lang=EN-US>Windows</span>）</p>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US><a href="https://github.com/topjohnwu/Magisk"><span
+lang=EN-US><span lang=EN-US>下载Magisk</span></span></a></span></p>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>按照开发者本人叙述的<span lang=EN-US><a
+href="https://topjohnwu.github.io/Magisk/install.html"><span lang=EN-US><span
+lang=EN-US>方法</span></span></a></span>安装</p>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>下载太极、<span lang=EN-US>LSPosed</span>、<span lang=EN-US>EdXposed</span>等<span
+lang=EN-US>Magisk</span>上的<span lang=EN-US>Xposed</span>插件</p>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>下载防撤回插件模块</p>
+
+<p class=MsoListParagraph style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US>a)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>QNotified:QQ</span>全能插件<span lang=EN-US>:<a
+href="https://github.com/ferredoxin/QNotified">GitHub<span lang=EN-US><span
+lang=EN-US>页面</span></span></a></span></p>
+
+<p class=MsoListParagraph style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US>b)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US>XposedWeChatHelper:<a
+href="https://github.com/wuxiaosu/XposedWechatHelper">GitHub<span lang=EN-US><span
+lang=EN-US>页面</span></span></a></span></p>
+
+<p class=MsoListParagraph style='margin-left:42.0pt;text-indent:-21.0pt'><span
+lang=EN-US>c)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>微<span lang=EN-US>X</span>模块：<span lang=EN-US><a
+href="http://repo.xposed.info/module/com.fkzhang.wechatxposed">Xposed<span
+lang=EN-US><span lang=EN-US>页面</span></span></a></span></p>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>在<span lang=EN-US>Xposed</span>管理程序中启用模块</p>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>使用<span lang=EN-US>Magisk</span>上的<span lang=EN-US>Xposed</span>需要在管理页面添加应用以实施托管</p>
+
+<p class=MsoListParagraph style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=EN-US>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>运行</p>
+
+</div>
+
+</body>
+
+</html>
